@@ -1,0 +1,47 @@
+<FrameLayout android:id="@+id/action_preferences"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="it.jaschke.alexandria.PreferencesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Preferences"
+            android:text="@string/pref_startScreen"
+            />
+
+        <RadioGroup android:id="@+id/radioGroup"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:background="#e6e6e6"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_scan"
+                style="@style/RadioButtons"
+                android:text="@string/scan"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:background="#e6e6e6"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_books"
+                style="@style/RadioButtons"
+                android:text="@string/books"/>
+        </RadioGroup>
+    </LinearLayout>
+</FrameLayout>

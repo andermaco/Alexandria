@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_startScreen">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:dialogTitle="@string/dialog_title_list_preference"
+            android:entries="@array/pref_start_options"
+            android:entryValues="@array/pref_start_values"
+            android:key="pref_startFragment"
+            android:summary="@string/summary_list_preference"
+            android:title="@string/pref_title"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

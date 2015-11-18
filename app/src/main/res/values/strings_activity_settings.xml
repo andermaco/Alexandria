@@ -1,0 +1,61 @@
+<resources>
+    <string name="title_activity_settingsBBBBBBBBBBBBBBBBBBB">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_generalBBBBBBBBBBBBBBBBBBB">General</string>
+
+    <string name="pref_title_social_recommendationsBBBBBBBBBBBBBBBBBBB">Enable social recommendations</string>
+    <string name="pref_description_social_recommendationsBBBBBBBBBBBBBBBBBBB">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_namepref_example_list_titlesBBBBBBBBBBBBBBBBBBB">Display name</string>
+    <string name="pref_default_display_nameBBBBBBBBBBBBBBBBBBB">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messagesBBBBBBBBBBBBBBBBBBB">Add friends to messages</string>
+    <string-array name="pref_example_list_titlesBBBBBBBBBBBBBBBBBBB">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_valuesBBBBBBBBBBBBBBBBBBB">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_syncBBBBBBBBBBBBBBBBBBB">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequencyBBBBBBBBBBBBBBBBBBB">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titlesBBBBBBBBBBBBBBBBBBB">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_valuesBBBBBBBBBBBBBBBBBBB">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settingsBBBBBBBBBBBBBBBBBBB">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notificationsBBBBBBBBBBBBBBBBBBB">Notifications</string>
+
+    <string name="pref_title_new_message_notificationsBBBBBBBBBBBBBBBBBBB">New message notifications</string>
+
+    <string name="pref_title_ringtoneBBBBBBBBBBBBBBBBBBB">Ringtone</string>
+    <string name="pref_ringtone_silentBBBBBBBBBBBBBBBBBBB">Silent</string>
+
+    <string name="pref_title_vibrateBBBBBBBBBBBBBBBBBBB">Vibrate</string>
+</resources>
