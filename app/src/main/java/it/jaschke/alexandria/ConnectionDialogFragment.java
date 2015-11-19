@@ -12,7 +12,7 @@ import android.support.v4.app.DialogFragment;
  */
 public class ConnectionDialogFragment extends DialogFragment {
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public final Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getActivity().getTitle());
         builder.setMessage(R.string.connetion_settings)

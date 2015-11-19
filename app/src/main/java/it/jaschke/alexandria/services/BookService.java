@@ -41,7 +41,7 @@ public class BookService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    protected final void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
             if (FETCH_BOOK.equals(action)) {
@@ -135,11 +135,6 @@ public class BookService extends IntentService {
             bookJsonString = buffer.toString();
         } catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
-//            Intent messageIntent = new Intent(MainActivity.MESSAGE_EVENT);
-//            messageIntent.putExtra(MainActivity.MESSAGE_NO_CONNECTIVITY,getResources().getString(R.string.no_connectivity));
-//            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(messageIntent);
-//            return;
-
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

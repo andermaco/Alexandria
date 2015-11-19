@@ -32,16 +32,10 @@ import it.jaschke.alexandria.services.BookService;
 
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
-    private static final String SCAN_FORMAT = "scanFormat";
-    private static final String SCAN_CONTENTS = "scanContents";
-    private final int LOADER_ID = 1;
     private final String EAN_CONTENT = "eanContent";
-    OnConnectinProvider mCallback;
+    private OnConnectionProvider mCallback;
     private EditText ean;
     private View rootView;
-    private String mScanFormat = "Format:";
-    private String mScanContents = "Contents:";
-
 
     public AddBook() {
     }
@@ -86,7 +80,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public final void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (ean != null) {
             outState.putString(EAN_CONTENT, ean.getText().toString());
@@ -94,7 +88,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public final View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 // TODO: 12/11/15 Checks connectivity
         // Checks connectivity
@@ -180,7 +174,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     // TODO: 13/11/15 Added Zxing functionality
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public final void onActivityResult(int requestCode, int resultCode, Intent data) {
         // retrieve scan result
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(
                 requestCode, resultCode, data);
@@ -196,11 +190,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     private void restartLoader() {
+        int LOADER_ID = 1;
         getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
     @Override
-    public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public final android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (ean.getText().length() == 0) {
             return null;
         }
@@ -219,7 +214,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+    public final void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
         if (!data.moveToFirst()) {
             return;
         }
@@ -272,12 +267,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public final void onAttach(Activity activity) {
         super.onAttach(activity);
         activity.setTitle(R.string.scan);
 
         try {
-            mCallback = (OnConnectinProvider) activity;
+            mCallback = (OnConnectionProvider) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
@@ -286,7 +281,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     }
 
     // Container Activity must implement this interface
-    public interface OnConnectinProvider {
+    public interface OnConnectionProvider {
         void onNotConnectionProvided();
     }
 }

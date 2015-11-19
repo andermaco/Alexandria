@@ -20,24 +20,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import it.jaschke.alexandria.AddBook.OnConnectinProvider;
+import it.jaschke.alexandria.AddBook.OnConnectionProvider;
 import it.jaschke.alexandria.NavigationDrawerFragment.NavigationDrawerCallbacks;
-import it.jaschke.alexandria.PreferencesFragment.OnFragmentInteractionListener;
+//import it.jaschke.alexandria.PreferencesFragment.OnFragmentInteractionListener;
 import it.jaschke.alexandria.api.Callback;
 
 //import it.jaschke.alexandria.PreferencesFragment.OnFragmentInteractionListener;
 
 
 public class MainActivity extends ActionBarActivity implements
-        NavigationDrawerCallbacks, Callback, OnConnectinProvider,
-        OnFragmentInteractionListener
+        NavigationDrawerCallbacks, Callback, OnConnectionProvider
 {
-    private static final String TAG_LOG = MainActivity.class.getSimpleName();
-
     public static final String MESSAGE_EVENT = "MESSAGE_EVENT";
     public static final String MESSAGE_KEY = "MESSAGE_EXTRA";
-    public static final String MESSAGE_NO_CONNECTIVITY = "MESSAGE_NO_CONNECTIVITY";
-    public static final String MESSAGE_CONNECTIVITY = "MESSAGE_CONNECTIVITY";
     public static final String MESSAGE_LIST_BOOKS = "LIST_BOOKS";
     public static final String POSITION_STATE = "position";
 
@@ -54,7 +49,7 @@ public class MainActivity extends ActionBarActivity implements
     private BroadcastReceiver mMessageReciever;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         IS_TABLET = isTablet();
@@ -78,7 +73,7 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+    public final void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment nextFragment;
         Boolean removeFragment = false;
@@ -92,11 +87,9 @@ public class MainActivity extends ActionBarActivity implements
             case 1:
                 nextFragment = new AddBook();
                 setTitle(R.string.scan);
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
 
                 // Removes book detail fragment
                 if (IS_TABLET) {
-                    int id = R.id.container;
                     if (findViewById(R.id.right_container) != null) {
                         removeFragment = true;
                     }
@@ -125,11 +118,11 @@ public class MainActivity extends ActionBarActivity implements
 
     }
 
-    public void setTitle(int titleId) {
+    public final void setTitle(int titleId) {
         mTitle = getString(titleId);
     }
 
-    public void restoreActionBar() {
+    public final void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(mTitle);
@@ -139,7 +132,7 @@ public class MainActivity extends ActionBarActivity implements
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
@@ -152,7 +145,7 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public final boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -172,19 +165,19 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+    public final void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         outState.putInt(POSITION_STATE, this.getmMenuposition());
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
     @Override
-    protected void onDestroy() {
+    protected final void onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReciever);
         super.onDestroy();
     }
 
     @Override
-    public void onItemSelected(String ean) {
+    public final void onItemSelected(String ean) {
         Bundle args = new Bundle();
         args.putString(BookDetail.EAN_KEY, ean);
 
@@ -202,7 +195,7 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    public void onNotConnectionProvided() {
+    public final void onNotConnectionProvided() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         new ConnectionDialogFragment().show(fragmentManager, mTitle.toString());
     }
@@ -217,7 +210,7 @@ public class MainActivity extends ActionBarActivity implements
         return false;
     }
 
-    public void goBack(View view) {
+    public final void goBack(View view) {
         getSupportFragmentManager().popBackStack();
     }
 
@@ -228,7 +221,7 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     @Override
-    public void onBackPressed() {
+    public final void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() < 1) {
             finish();
         }
@@ -237,25 +230,17 @@ public class MainActivity extends ActionBarActivity implements
         super.onBackPressed();
     }
 
-    @Override
-    public void onFragmentInteraction() {
-        if (getSupportFragmentManager().getBackStackEntryCount() < 2) {
-            finish();
-        }
-        super.onBackPressed();
-    }
-
-    public int getmMenuposition() {
+    public final int getmMenuposition() {
         return mMenuposition;
     }
 
-    public void setmMenuposition(int mMenuposition) {
+    public final void setmMenuposition(int mMenuposition) {
         this.mMenuposition = mMenuposition;
     }
 
     private class MessageReceiver extends BroadcastReceiver {
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public final void onReceive(Context context, Intent intent) {
             if (intent.getStringExtra(MESSAGE_KEY) != null) {
                 Toast.makeText(MainActivity.this, intent.getStringExtra(MESSAGE_KEY), Toast.LENGTH_LONG).show();
 

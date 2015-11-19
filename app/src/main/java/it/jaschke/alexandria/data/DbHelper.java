@@ -18,7 +18,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public final void onCreate(SQLiteDatabase db) {
 
         final String SQL_CREATE_BOOK_TABLE = "CREATE TABLE " + AlexandriaContract.BookEntry.TABLE_NAME + " (" +
                 AlexandriaContract.BookEntry._ID + " INTEGER PRIMARY KEY," +
